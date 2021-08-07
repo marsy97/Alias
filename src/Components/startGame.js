@@ -8,7 +8,8 @@ import { useHistory } from "react-router-dom";
 import { dodajPoene, dodajTimove } from "../Redux/counterSlice";
 import Continue from "./Countinue";
 import './game.css';
-
+const { api} = require('./../Api')
+const colors = ["#d50000", "#ef9a9a", "black", "#90caf9","#0d47a1"]
 
 
 
@@ -27,6 +28,7 @@ function StartGame() {
     const rijec = useRef([])
     const TrenutniTim = useRef(0)
     const AktivniBodovi = useRef(0)
+    let DifficultyLevels = useRef()
 
     //redux
    
@@ -40,11 +42,13 @@ function StartGame() {
     const [pobjeda, setPobjeda] = useState(null)
     const [timer, setTimer] = useState(1)
     const [igraTraje, setIgraTraje] = useState(true)
+    const [difficultyLevel, setDifficultyLevel] = useState(0);
 
 
     useEffect(() => {
         is_there_a_winner();
         setIgraTraje(true)
+        DifficultyLevels.current=[]
         setTimer(0)
         AktivniBodovi.current = 0;
         rijec.current = [];
@@ -73,7 +77,7 @@ function StartGame() {
 
                 <motion.div className="igra" animate={igraTraje ? {} : { opacity: "0", zIndex: -1, height: 0 }}>
                     <div style={{ color: "black", fontSize: "4rem" }}>{timer}</div>
-                    <div className="rijec">{rijec.current[rijec.current.length - 1]} </div>
+                    <div style={{ color: colors[difficultyLevel+2] }} className="rijec">{rijec.current[rijec.current.length - 1]} </div>
 
                     <h2 style={{ color: "black" }}>    {AktivniBodovi.current}</h2>
                     <div className="buttonPointsParent" style={{ display: "flex" }}>
@@ -120,9 +124,18 @@ function StartGame() {
     function add_word() {
         const numWords = allWords.length
         const randWord = Math.floor(Math.random() * numWords);
-        console.log(randWord)
+        const temporaryWord = allWords[randWord].trim()
 
-        rijec.current = [...rijec.current, [allWords[randWord],0]];
+        rijec.current = [...rijec.current, [temporaryWord, 0]];
+        console.log(temporaryWord + "..." + typeof temporaryWord)
+        const link = api + '/hardWords/' + temporaryWord
+        console.log(link);
+        axios.get(link).then((response) => {
+
+            const recivedWord = response.data.val
+            DifficultyLevels.current = [...DifficultyLevels.current, [rijec, recivedWord]];
+            setDifficultyLevel(recivedWord);
+        })
         
     }
 
