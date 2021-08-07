@@ -50,12 +50,19 @@ import './game.css';
 
 
             <div className="timbuttonparent" onClick={() => { setState(1) }}>
-              <div className="button">  NOVI TIM   </div>
-            </div>
+                 <div className="button">  NOVI TIM   </div>
 
+                 <div className="pokrenibuttonparent" >
+                     <Link to="/startGame" className="pokrenibutton">  POKRENI IGRU  </Link>
+                 </div>
 
+             </div>
+
+            
+
+             <motion.div className="tint" animate={state ? {} : { x: "-200%" }}>
             <motion.div className="gameInputParent"
-                 animate={state ? {} : { x: "-200%" }}            >
+                 animate={state ? {} : { x: "-200%" }} >
                  <input onEnded={()=> alert("kraj") } ref={input1} id="input1" placeholder="Ime tima" type="text" className="gameInput" />
                 <input ref={input2} id="input2" placeholder="Igrac 1" type="text" className="gameInput"/>
                 <input ref={input3} id="input3" placeholder="Igrac 2" type="text" className="gameInput" />
@@ -65,13 +72,15 @@ import './game.css';
                     <div className="buttonInputcancel"  onClick={() => { setState(0) }}>ODUSTANI</div>
 
                 </div>
-            </motion.div>
+                 </motion.div>
+            
 
             
 
-            <div className="pokrenibuttonparent" >
-                <Link to="/startGame" className="pokrenibutton">  POKRENI IGRU  </Link>
-            </div>
+            
+
+             </motion.div>
+
         </div>
     );
 
@@ -102,7 +111,7 @@ import './game.css';
          
          
 
-
+         
 
 
      }

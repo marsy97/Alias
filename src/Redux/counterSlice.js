@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     timovi:[],
     value: 0,
-    timBodovi:[]
+    timBodovi: [],
+    words: ["Initial"]
 }
 
 export const counterSlice = createSlice({
@@ -25,19 +26,23 @@ export const counterSlice = createSlice({
         },
 
         dodajPoene: (state, action) => {
-            
-          
+
+            state.timBodovi[action.payload.index] += action.payload.bodovi
             
         },
         dodajTimove: (state, action) => {
             state.timovi = action.payload
             let temporary = new Array(action.payload.length).fill(0);
             state.timBodovi = temporary;
+        }, set_words: (state, action) => {
+            state.words = action.payload
+           
         },
+        
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, dodajPoene, dodajTimove } = counterSlice.actions
+export const { increment, decrement, incrementByAmount, dodajPoene, dodajTimove, set_words } = counterSlice.actions
 
 export default counterSlice.reducer

@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { dodajPoene } from '../Redux/counterSlice';
+import Switch from '@material-ui/core/Switch'
 import './game.css';
+import Stats from '../Stats/Stats';
 
 //tim={timovi[trenutniTim]} bodovi={timBodovi[trenutniTim]} funkcija={() => setRefresh(!refresh)} 
 
@@ -12,62 +14,96 @@ const colors = [
 
 function Continue(props) {
 
-
-
-    const value = useSelector((state) => state.counter.timBodovi)
+    const [rijeci, setRijeci] = useState([])
+    const [suma, setSuma] = useState(0)
+    const Timovi = useSelector((state) => state.counter.timBodovi)
+    const [back, setBack] = useState(0)
+    const [details, setDetails] = useState(0)
     const dispatch = useDispatch()
-    const timovi = useSelector((state) => state.counter.timovi);
-    const timBodovi = useSelector((state) => state.counter.timBodovi)
-    const [miniRefresh, setRef] = useState(0)
-    const [marsel, setMarsel] = useState(props.pogodeneRijeci)
-
     useEffect(() => {
-        console.log("probudi se")
-    }, [props.pogodeneRijeci])
+       
+            let array = [];
+        props.rijeci.forEach((val) => {
+            array.push(val[1])
+        })
+        setRijeci(array)
+    }, [props.rijeci])
+    useEffect(() => {
+        if (props.rijeci !== undefined)
+            setSuma(rijeci.reduce((sum, val) => sum + val, 0))
+      
+    }, [rijeci])
+    useEffect(() => {
+        if (!back) return;
+        props.refresh()
 
+
+    }, [back])
+
+    if (!details)
     return (
-        <div style={{color:"black"}}>
-            <div> {timovi[props.trenutniTim].tim}</div>
+        <div className="continue" >
+            <div className="h1">IZMJENI ODGOVORE</div>
+            <div className="runda">
+                <h2>OVA RUNDA</h2>
+                <p>{suma} bodova</p>
+            </div>
+
+            
+
+            <div className="izmjeniRijeciParent">
             {
-                props.pogodeneRijeci.map((val, index) =>
-                    <div style={val.pogodak === 0 ? { display: "none" } : {}}>
-                        <span style={{ backgroundColor: colors[val.pogodak + 1] }}> {val.pogodak}</span>
-                        <input id={`${index}`} defaultChecked={funkcija(val.pogodak)} key={index} onChange={(x) => changePoints(x.target.checked, val.pogodak, index)} type="checkbox" />
+                
+                    props.rijeci.map((val, wordIndex) =>
+                        <div className="izmjeniRijec" style={val[1] === 0 ? { display: "none" } : {}}>
+                            <span style={{ color: `${rijeci[wordIndex] === 1 ? "#111" : "red"}` }}> {val[0]}</span>
+                            <Switch 
+                                checked={rijeci[wordIndex] === 1}
+                                onChange={(event) => { change_rijeci(wordIndex, event) }}
+                                name="checkedA"
+                                inputProps={{ 'aria-label': 'secondary checkbox' }}
+                            />
+                        </div>
+                        )
+               
+                }
+
+            </div>
+
+            
+            <div className="izmjeniParent">
+
+                <div className="odustani" onClick={() => Update()}>
+                    ODUSTANI
                     </div>
-                   
-                    )
-            }
-            <section> {total_points()}</section>
-            <button onClick={()=> props.funkcija(false) }>
-                Nastavi
-            </button>
+
+                    <div className="izmjeni" onClick={() => Update()}>
+                            SPREMI
+                    </div>
+            </div>
+
             </div>
         
     );
-
-    function changePoints(num, val, index) {
-        let number = -1
-        if (num == 1) {
-            number = 1
-        }
-       
-
-        props.resetPoints(number, index, number);
-        setRef(number + miniRefresh)
-    }
     
-    function funkcija(val) {
-        console.log(val+"---"+typeof val)
-        if (val===1) return true;
-        return false;
+    return (
+        <div>
+            <Stats word_set={props.rijeci} count_set={rijeci} refresh={() => setBack(1)} />
+        </div>
+        )
+
+
+    function Update() {
+        dispatch(dodajPoene({ index: props.index, bodovi: suma }))
+        setDetails(!details)
     }
 
-    function total_points() {
-        var suma = 0
-        props.pogodeneRijeci.forEach((val) => {
-            suma += val.pogodak
-        })
-        return suma;
+    function change_rijeci(index, state) {
+        
+        let array = [...rijeci];
+        array[index] = state.target.checked ? 1 : -1;
+
+        setRijeci(array)
     }
 
 

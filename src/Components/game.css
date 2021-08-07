@@ -1,3 +1,4 @@
+
 body{
     background-color:cornflowerblue;
 }
@@ -25,24 +26,29 @@ a{
 .pokrenibutton {
     color: white;
     background-color: orange;
-    padding: 1.5rem;
+    padding: 1rem;
     width: 95%;
     text-align: center;
     font-weight: 600;
     font-size: 1.5rem;
-    border-radius: 5px;
+    
+    box-shadow: 0 8px 8px -4px  rgba(0,0,0,0.2);
 }
+
+    .pokrenibutton:hover {
+        box-shadow: 5px 15px 15px -4px rgba(0,0,0,0.2);
+    }
 
 .pokrenibuttonparent {
     position: absolute;
     bottom: 5%;
     left:1.25%;
     display: flex;
-    width: 97.5%;
+    width: 95%;
     justify-content: center;
     align-content: center;
     background-color: white;
-    
+   z-index:0;
     border-radius: 5px;
     padding: 1.5rem 1rem;
 }
@@ -60,29 +66,32 @@ a{
     padding:1.5rem;
 }
 
+.tint{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color:rgba(0,0,0,0.3);
+}
 
 .gameInputParent {
     position: absolute;
     top: 25%;
     display: flex;
     flex-wrap: wrap;
-    width: 95%;
+    width: 85%;
     align-items: center;
     justify-content: center;
     left:1%;
     background-color: white;
     padding: 1.5rem;
     border-radius: 5px;
-    height:50vh;
+    height:55vh;
+    z-index:50;
+    
     
 }
-@media screen and (max-height: 600px) {
-    .gameInputParent{
-        height:100vh;
-        z-index:10;
-    }
-}
-
 
 .timbuttonparent {
     display: flex;
@@ -102,14 +111,14 @@ a{
     width: 50%;
     text-align: center;
     font-weight: 500;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .buttonInputcancel {
     padding: 1rem 1.5rem;
     color: white;
     margin: 1.5rem 1.5rem 1.5rem 0;
-    background-color: dimgrey;
+    background-color: #404040;
     width: 50%;
     text-align: center;
     font-weight: 500;
@@ -118,62 +127,345 @@ a{
 
 
 
-.igra{
-    background-color:whitesmoke;
-    text-align:center;
-    height:100%;
-    width:100%;
-    overflow-x:hidden;
-    color:white;
-    font-weight:600;
+.igra {
+    background-color: whitesmoke;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    color: white;
+    font-weight: 600;
 }
 
-.igraci{
-    width:95%;
-    margin:0 auto;
-    color:#111;
-    font-size:1.2rem;
-    font-weight:500;
-    background-color:white;
-    padding:1.5rem;
-    border-radius:5px;
-    margin-bottom:1rem;
+.igraci {
+    width: 95%;
+    margin: 0 auto;
+    color: #111;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
 }
 
 .buttonTocno {
     background-color: mediumspringgreen;
     font-size: 1rem;
-    padding: 1.2rem 3rem;
+    padding: 1.5rem 3rem;
     box-sizing: border-box;
     position: absolute;
-    bottom: 0;
-    width: 40%;
+    bottom: 2%;
+    width: 45%;
     right: 2%;
+    font-weight:700;
+    box-shadow: 0 8px 8px -4px rgba(0,0,0,0.2);
+}
+
+    .buttonTocno:hover {
+
+    box-shadow: 5px 15px 15px -4px rgba(0,0,0,0.2);
+
+}
+
+.buttonPreskoci:hover {
+    box-shadow: 5px 15px 15px -4px rgba(0,0,0,0.2);
 }
 
 .buttonPreskoci {
     background-color: #f25757;
     font-size: 1rem;
-    box-sizing:border-box;
-    padding: 1.2rem 2.5rem;
+    box-sizing: border-box;
+    padding: 1.5rem 2.5rem;
     position: absolute;
-    bottom: 0;
-    left:2%;
-    width:40%;
+    bottom: 2%;
+    left: 2%;
+    width: 45%;
+    box-shadow: 0 8px 8px -4px rgba(0,0,0,0.2);
+    font-weight: 700;
 }
 
-.buttonPointsParent{
-   width:90%;
+.buttonPointsParent {
+    width: 90%;
+}
+
+.rijec {
+    color: #111;
+    font-size: 3rem;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-weight: 600;
+    text-align: center;
+}
+
+.timer {
+    font-size: 20rem;
+    color: rgba(0,0,0,0.15);
+    font-weight:400;
+    position: absolute;
+    top: 40%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+/*----IZMJENA ODGOVORA---*/
+
+
+.continue{
+
+    background-color:lightskyblue;
+    height:100vh;
+}
+
+
+.izmjeniParent {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-content: center;
+    background-color: white;
+    margin:auto;
+    cursor: pointer;
+    border-radius:5px;
+    position:absolute;
+    bottom:2%;
+    left:5%;
+}
+
+.izmjeni {
+    padding: 1rem 1.5rem;
+    color: white;
+    background-color: orange;
+    margin: 1rem 1rem 1rem 0.5rem;
+    width: 50%;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 8px -4px rgba(0,0,0,0.2);
+}
+
+    .izmjeni:hover {
+        box-shadow: 5px 15px 15px -4px rgba(0,0,0,0.2);
+    }
+
+.odustani {
+    padding: 1rem 1.5rem;
+    color: white;
+    margin: 1rem 0.5rem 1rem 1rem;
+    background-color: #404040;
+    width: 50%;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 8px -4px rgba(0,0,0,0.2);
+
+    border: none;
+}
+
+    .odustani:hover {
+        box-shadow: 5px 15px 15px -4px rgba(0,0,0,0.2);
+    }
+
+
+    .izmjeniRijec{
+        margin:1px 0;
+        display:flex;
+        background-color:white;
+        color:#111;
+        text-align:left;
+        padding:1.2rem 0.8rem 0.5rem;
+        justify-content:space-between;
+        
+        
+    }
+
+    .h1{
+        padding:1.5rem 1rem;
+        margin:0 !important;
+        font-size:2rem;
+        font-weight:700;
+        text-align:center;
+
+    }
+
+    .runda{
+        text-align:left;
+        background-color:white;
+        color:rgba(0,0,0,0.8);
+        font-size:0.8rem;
+        padding:0.5rem 1rem;
+        margin-bottom:1rem;
+    }
+
+    .runda p{
+        font-weight:600;
+        font-size:1rem;
+    }
+
+.izmjeniRijeciParent {
+    max-height: 50vh;
+    overflow-y:scroll;
     
 }
 
-.rijec{
-    color:#111;
-    font-size:3rem;
-    position:absolute;
-    top:40%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-weight:600;
-    text-align:center;
+.MuiSwitch-colorPrimary {
+    background-color:black;
+
 }
+
+.MuiSwitch-colorSecondary.Mui-checked {
+    color:#10b575 !important;
+}
+
+.MuiSwitch-track {
+    background-color: mediumspringgreen !important;
+}
+
+/*----REZULTATI---*/
+
+.stats{
+    background-color:lightskyblue;
+    height:100vh;
+}
+
+.timRezultati{
+    background-color:white;
+    margin-bottom:1px;
+    color:#606060;
+    padding:2rem 1.5rem;
+    text-align:left;
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.timRezultati span{
+    width:100%;
+}
+
+
+.nextRoundParent{
+    background-color:white;
+    width:100%;
+    height:30%;
+    position:absolute;
+    bottom:0;
+}
+
+.nextRound{
+    color:white;
+    background-color:orange;
+    padding:1rem;
+    width:30%;
+    position:absolute;
+    right:5%;
+    bottom:50%;
+    font-weight:700;
+}
+
+/*--POBJEDA---*/
+
+.pobjedaBg {
+    background-image: url("winner.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 1.5rem;
+    
+}
+.pobjedaBg h1{
+    margin:0;
+    padding:1rem 0;
+}
+
+.pobjednici{
+    text-align:center;
+    font-size:2rem;
+    position:absolute;
+    bottom:25%;
+    left:1.5rem;
+}
+
+.zavrsiParent {
+    width: 80%;
+    position: absolute;
+    bottom: 5%;
+    left: 2.5rem;
+    background-color: white;
+    padding: 1rem 0 1.5rem;
+    border-radius:5px;
+    
+}
+
+.zavrsibutton {
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: #404040;
+    padding: 1rem 2rem;
+    box-shadow: 0 8px 8px -4px rgba(0,0,0,0.2);
+    margin-right:0.5rem;
+}
+
+
+    .zavrsibutton:hover {
+        box-shadow: 5px 15px 15px -4px rgba(0,0,0,0.2);
+    }
+
+.zavrsibutton2 {
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: orange;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 8px 8px -4px rgba(0,0,0,0.2);
+    margin-left:0.5rem;
+}
+
+    .zavrsibutton2:hover {
+        box-shadow: 5px 15px 15px -4px rgba(0,0,0,0.2);
+    }
+
+/*MEDIA*/
+@media screen and (max-height: 600px) {
+    .gameInputParent{
+        height:100vh;
+       
+    }
+
+
+    .pokrenibuttonparent {
+        width:80%;
+        left: 1%;
+        
+    }
+
+
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .pokrenibuttonparent {
+        width: 87.5%;
+        
+        bottom:1%;
+
+            }
+
+    .gameInputParent{
+        z-index:50;
+    }
+
+    .igraci{
+        width:87.5%;
+    }
+}
+
+
