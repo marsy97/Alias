@@ -1,4 +1,4 @@
-const api = "198.162.100.8"
+const api = "http://192.168.100.36:5000"
 
 
 module.exports = {api}

@@ -68,8 +68,8 @@ function Continue(props) {
     );
     
     return (
-        <div style={{ backgroundColor:"black" }}>
-            <Stats refresh={() => setBack(1)} />
+        <div style={{ backgroundColor: "black" }}>
+            <Stats word_set={props.rijeci} count_set={rijeci} refresh={() => setBack(1)} />
             </div>
         )
 
